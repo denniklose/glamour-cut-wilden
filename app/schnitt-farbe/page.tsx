@@ -29,7 +29,7 @@ export default function CutColorPage() {
           <p>Öffentliche Einblicke von Glamour Cut zeigen Schnitte, Farbveränderungen sowie Kurzhaar- und Flechtfrisuren. Was für Ihr Haar passend ist, klären Sie direkt im Salon.</p>
         </div>
         <figure className="inner-feature-media extension-feature-media">
-          <Image src={salonConfig.media.color.src} alt={salonConfig.media.color.alt} fill sizes="(max-width: 760px) 94vw, 58vw" />
+          <Image src={salonConfig.media.color.src} alt={salonConfig.media.color.alt} fill loading="eager" sizes="(max-width: 760px) 94vw, 58vw" />
           <figcaption className="image-note">{salonConfig.media.color.caption} · Symbolbild</figcaption>
         </figure>
       </section>
