@@ -21,7 +21,7 @@ export default function CutColorPage() {
         ctaLabel={bookingLabel}
         ctaHref={bookingHref}
       />
-      <section className="inner-feature-section">
+      <section className="inner-feature-section editorial-feature-section">
         <div className="inner-feature-copy">
           <p className="section-kicker">Persönlich geplant</p>
           <h2>Ihr neuer <em className="heading-accent">Look</em> beginnt mit Beratung.</h2>

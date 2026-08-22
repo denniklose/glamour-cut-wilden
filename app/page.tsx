@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import BookingOverview from "./components/BookingOverview";
 import HoursCard from "./components/HoursCard";
 import MapEmbed from "./components/MapEmbed";
-import ServiceCard from "./components/ServiceCard";
+import ServiceSelector from "./components/ServiceSelector";
 import SiteFooter from "./components/SiteFooter";
 import SiteHeader from "./components/SiteHeader";
 import { bookingHref, bookingLabel, pageCopy, salonConfig, site } from "./site-data";
@@ -41,9 +41,9 @@ export default function Home() {
         <div className="hero-visual" aria-label="Haar-Inspiration"><div className="hero-arch"><Image src={salonConfig.media.hero.src} alt={salonConfig.media.hero.alt} fill priority sizes="(max-width: 760px) 94vw, 44vw" /></div><span className="image-note">{salonConfig.media.hero.caption}</span><span className="hero-visual-line" aria-hidden="true" /></div>
       </section>
 
-      <section className="service-intro" aria-labelledby="service-intro-title"><p>Beratung · Schnitt · Farbe</p><h2 id="service-intro-title">{introClaim.lead} <em className="heading-accent">{introClaim.accent}</em></h2><Link href={bookingHref}>{bookingLabel} <span aria-hidden="true">→</span></Link></section>
+      <section className="service-intro" aria-labelledby="service-intro-title"><p>Beratung · Schnitt · Farbe</p><div className="service-intro-composition"><h2 id="service-intro-title"><span>{introClaim.lead}</span><em className="heading-accent">{introClaim.accent}</em></h2><Link href={bookingHref}>{bookingLabel} <span aria-hidden="true">→</span></Link></div></section>
 
-      <section className="services-section" id="leistungen" aria-labelledby="services-title"><div className="section-heading section-heading-light"><p className="section-kicker">Inspiration &amp; Bereiche</p><h2 id="services-title">Schnitt. Farbe. <em className="heading-accent">Neue Ideen.</em></h2><p>{pageCopy.home.serviceIntro}</p></div><div className="service-list">{salonConfig.services.map((service) => <ServiceCard key={service.number} {...service} href={bookingHref} />)}</div></section>
+      <section className="services-section" id="leistungen" aria-labelledby="services-title"><div className="section-heading section-heading-light services-heading"><p className="section-kicker">Inspiration &amp; Bereiche</p><h2 id="services-title" className="editorial-heading"><span>Schnitt. Farbe.</span><em className="heading-accent">Neue Ideen.</em></h2><p>{pageCopy.home.serviceIntro}</p></div><ServiceSelector services={salonConfig.services} bookingHref={bookingHref} bookingLabel={bookingLabel} /></section>
 
       <section className="inspiration-section" id="salon" aria-labelledby="inspiration-title"><div className="section-heading"><p className="section-kicker">Glamour Cut</p><h2 id="inspiration-title">Raum für <em className="heading-accent">Ihren Stil.</em></h2><p>{pageCopy.home.salonIntro}</p></div><div className="look-grid"><figure className="look-card look-card-tall team-feature"><Image src={salonConfig.media.salon.src} alt={salonConfig.media.salon.alt} fill sizes="(max-width: 760px) 94vw, 52vw" /><figcaption><span>01</span><strong>{salonConfig.media.salon.caption}</strong><small>Generisches Symbolbild · keine Aufnahme des Salons</small></figcaption></figure><div className="look-side"><figure className="look-card salon-feature"><Image src={salonConfig.media.color.src} alt={salonConfig.media.color.alt} fill sizes="(max-width: 760px) 94vw, 42vw" /><figcaption><span>02</span><strong>{salonConfig.media.color.caption}</strong><small>Generisches Symbolbild · keine Kundenaufnahme</small></figcaption></figure><div className="social-proof-block"><p className="section-kicker">Persönliche Beratung</p><strong>{salonConfig.claims.salon}</strong><p>Ein stimmiger Look beginnt mit Zuhören, einer klaren Idee und einem Plan, der im Alltag funktioniert.</p><div className="inline-links"><Link className="text-link" href="/team/">Elena kennenlernen <span aria-hidden="true">↗</span></Link><Link className="text-link" href="/salon/">Salon entdecken <span aria-hidden="true">↗</span></Link></div></div></div></div></section>
 
