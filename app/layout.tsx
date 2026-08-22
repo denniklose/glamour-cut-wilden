@@ -3,6 +3,7 @@ import "./globals.css";
 import { salonConfig } from "../config/salon";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(salonConfig.seo.baseUrl),
   title: salonConfig.seo.pages.home.title,
   description: salonConfig.seo.pages.home.description,
   applicationName: salonConfig.identity.name,
@@ -15,8 +16,8 @@ export const metadata: Metadata = {
     locale: "de_DE",
   },
   robots: {
-    index: true,
-    follow: true,
+    index: !salonConfig.preview.enabled,
+    follow: !salonConfig.preview.enabled,
   },
   icons: {
     icon: salonConfig.logo.src,
@@ -34,10 +35,10 @@ export default function RootLayout({
       <body
         style={
           {
-            "--wine": salonConfig.accent.base,
-            "--wine-dark": salonConfig.accent.dark,
-            "--wine-soft": salonConfig.accent.soft,
-            "--wine-light": salonConfig.accent.light,
+            "--accent": salonConfig.accent.base,
+            "--accent-dark": salonConfig.accent.dark,
+            "--accent-soft": salonConfig.accent.soft,
+            "--accent-light": salonConfig.accent.light,
           } as React.CSSProperties
         }
       >

@@ -1,55 +1,57 @@
-# Handover Checklist
+# Glamour Cut · Handover Checklist
 
 ## Inhalt
 
-- [ ] `SALON_INTAKE.md` vollständig und mit Quellen belegt
-- [ ] Quellenledger mit URL, Prüfdatum, Status und Unsicherheiten gepflegt
-- [ ] Öffentliche Identität des Salons eindeutig aufgelöst
-- [ ] Jede Route ist vor dem Erstgespräch mit bestätigter oder neutraler Preview-Copy gefüllt
-- [ ] `npm run check:client-preview` erfolgreich ausgeführt
-- [ ] Vor dem Erstgespräch ist `preview.enabled: true` und der Hinweis `Vorab-Entwurf` sichtbar
-- [ ] Keine alten Marken, URLs, Logos, Fotos, Bewertungen oder Testdaten
+- [x] `SALON_INTAKE.md` vollständig und mit Quellen belegt
+- [x] Quellenledger mit URL, Prüfdatum, Status und Unsicherheiten gepflegt
+- [x] Öffentliche Identität des Salons eindeutig aufgelöst
+- [x] Jede Route ist vor dem Erstgespräch mit bestätigter oder neutraler Preview-Copy gefüllt
+- [x] `npm run check:client-preview` erfolgreich ausgeführt
+- [x] `preview.enabled: true` und der Hinweis `Kundenvorschau` sichtbar
+- [x] Keine alten Marken, URLs, Logos, Fotos, Bewertungen oder Testdaten im Frontend
 - [ ] Leistungen, Team und Geschichte schriftlich freigegeben
 - [ ] Claims je Route bestätigt
-- [ ] Jede sichtbare Inhalts-Bildfläche nutzt ein klar lizenziertes Foto oder ein freigegebenes, originales fotorealistisches KI-Haarmotiv
-- [ ] Keine Illustrationen, Vektor-Platzhalter oder abstrakten Ersatzgrafiken als sichtbare Inhaltsbilder
-- [ ] Generische KI-Motive sind nicht fälschlich als Salon, Team, Kundschaft oder Leistung dargestellt
+- [x] Jede sichtbare Inhalts-Bildfläche nutzt ein dokumentiertes originales fotorealistisches KI-Haarmotiv
+- [x] Keine Illustrationen, Vektor-Platzhalter oder abstrakten Ersatzgrafiken als sichtbare Inhaltsbilder
+- [x] Generische KI-Motive sind sichtbar und in Alt-Texten als Symbolbilder eingeordnet
 
 ## Technik
 
-- [ ] `npm ci`
-- [ ] `npm run check:template` ohne Fehler
+- [x] `npm ci`
+- [x] `npm run check:template` ohne Fehler
 - [ ] Nach Kundenfreigabe: `preview.enabled: false`
 - [ ] Nach Kundenfreigabe: `npm run check:template:strict`
-- [ ] `npm run lint`
-- [ ] `npx tsc --noEmit`
-- [ ] `npm run build`
-- [ ] `npm audit` geprüft und dokumentiert
-- [ ] Keine `.env*`, privaten Schlüssel, `node_modules`, `.next`, `.vercel` oder Cache-Dateien
+- [x] `npm run lint`
+- [x] `npx tsc --noEmit`
+- [x] `npm run build`
+- [x] `npm audit --audit-level=high` · 0 Schwachstellen
+- [x] Keine `.env*`, privaten Schlüssel, `node_modules`, `.next`, `.vercel` oder Cache-Dateien im Git-Stand
 
 ## Qualitätssicherung
 
-- [ ] Desktop, Tablet und Mobil geprüft
-- [ ] Kein horizontaler Overflow oder abgeschnittener Text
-- [ ] Genau eine H1 pro Route
-- [ ] Keine Console-Fehler
-- [ ] Navigation, CTAs, Telefon, E-Mail und Terminlink getestet
-- [ ] Vor dem Map-Klick kein iframe/keine Google-Anfrage; nach dem Klick nur bei freigegebener URL
-- [ ] Route-spezifische Title, Description und Canonical verifiziert
+- [x] Desktop 1280×720, Tablet 768×1024 und Mobil 390×844 geprüft
+- [x] Kein horizontaler Overflow oder abgeschnittener Text in 27 Routen-/Viewport-Prüfungen
+- [x] Genau eine H1 pro Route
+- [x] Keine Console- oder Page-Fehler
+- [x] Navigation, Mobile-Menü, CTAs, Telefon, E-Mail und Terminweg getestet
+- [x] Vor dem Map-Klick 0 iframe und 0 Google-Anfragen; nach dem Klick 1 iframe
+- [x] Route-spezifische Title, Description, Canonical sowie `noindex, nofollow` verifiziert
 
 ## Recht und Übergabe
 
 - [ ] Impressum geprüft
 - [ ] Datenschutz geprüft
-- [ ] Externe Dienste und Einwilligungen dokumentiert
-- [ ] Asset-Quellen, Lizenzen, Alt-Texte und Freigaben vollständig
-- [ ] Je KI-Motiv ist der Erstellungsnachweis, der generische oder kundenbezogene Status und die Freigabe im Asset-Manifest dokumentiert
-- [ ] GitHub-Ziel, Sichtbarkeit, Branch und Template-Status verifiziert
-- [ ] Kein Vercel-Projekt aus der Vorlage angelegt oder überschrieben
+- [x] Externe Dienste und Einwilligungen dokumentiert
+- [x] Asset-Quellen, Lizenzen, Alt-Texte und Freigaben vollständig
+- [x] Je KI-Motiv ist der Erstellungsnachweis, der generische Status und die Freigabe im Asset-Manifest dokumentiert
+- [x] Privates GitHub-Ziel `denniklose/glamour-cut-wilden`, Branch `main`, getrennt von der Vorlage
+- [x] Neues separates Vercel-Projekt `timmachtsachen/glamour-cut-wilden`; Vorlage nicht überschrieben
+- [x] GitHub-Repository mit genau diesem Vercel-Projekt verbunden
+- [x] Produktion `READY`, Alias `https://glamour-cut-wilden.vercel.app`, anonym HTTP 200
 
 ## Ablauf der Kundenvorschau
 
-- [ ] Der Kunde kann Startseite und alle Unterseiten vor dem ersten Anruf öffnen.
-- [ ] Neutrale Texte sind hochwertig formuliert, aber nicht als Salonfakten ausgegeben.
-- [ ] Offene Punkte sind im Quellenledger für das Gespräch notiert.
+- [x] Der Kunde kann Startseite und alle Unterseiten vor dem ersten Anruf öffnen.
+- [x] Vorsichtige Texte sind hochwertig formuliert, ohne unbestätigte Salonfakten auszugeben.
+- [x] Offene Punkte sind im Quellenledger für das Gespräch notiert.
 - [ ] Änderungswünsche werden nach dem Gespräch wieder zentral in `config/salon.ts` eingepflegt.

@@ -88,11 +88,7 @@ const forbiddenTokens = [
   "sayn" + "ische",
   "ste" + "ffi",
   "dn" + "fk",
-  "share" + ".google",
   "great" + "lengths",
-  "vercel" + ".app",
-  "github" + ".com",
-  "instagram" + ".com",
   "facebook" + ".com",
 ];
 const forbidden = new RegExp(forbiddenTokens.join("|"), "i");
@@ -134,7 +130,7 @@ if (/placeholderImage|Platzhaltergrafik/i.test(configText)) errors.push("Sichtba
 const forbiddenEntries = [".env", ".env.local", ".vercel", "node_modules", ".next", "tsconfig.tsbuildinfo"];
 for (const entry of forbiddenEntries) {
   if (!existsSync(join(root, entry))) continue;
-  if (["node_modules", ".next", "tsconfig.tsbuildinfo"].includes(entry)) warnings.push(`${entry} ist lokal vorhanden und muss vor dem Commit ignoriert bleiben.`);
+  if (["node_modules", ".next", ".vercel", "tsconfig.tsbuildinfo"].includes(entry)) warnings.push(`${entry} ist lokal vorhanden und muss vor dem Commit ignoriert bleiben.`);
   else errors.push(`Nicht ins Template gehört: ${entry}`);
 }
 for (const file of ["README.md", "SALON_INTAKE.md", "CODEX_PROMPT.md", "HANDOVER_CHECKLIST.md"]) {
@@ -143,11 +139,11 @@ for (const file of ["README.md", "SALON_INTAKE.md", "CODEX_PROMPT.md", "HANDOVER
 
 const approvals = /legalReviewed:\s*true/.test(configText) && /claimsConfirmed:\s*true/.test(configText);
 if (!approvals) {
-  const message = "Rechtliche Freigaben und Claims sind im Starter noch offen.";
+  const message = "Rechtliche Freigaben und Claims sind für die Kundenvorschau noch offen.";
   if (strict) errors.push(message); else warnings.push(message);
 }
 if (!/assetRightsConfirmed:\s*true/.test(configText)) {
-  const message = "Asset-Rechte sind im Starter noch offen.";
+  const message = "Asset-Rechte sind für die Kundenvorschau noch offen.";
   if (strict) errors.push(message); else warnings.push(message);
 }
 

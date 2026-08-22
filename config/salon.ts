@@ -2,7 +2,7 @@ export type RouteKey =
   | "home"
   | "team"
   | "salon"
-  | "extensions"
+  | "cutColor"
   | "about"
   | "contact"
   | "booking"
@@ -69,7 +69,7 @@ export type SalonConfig = {
   media: {
     hero: ImageAsset;
     salon: ImageAsset;
-    extension: ImageAsset;
+    color: ImageAsset;
     team: ImageAsset;
     about: ImageAsset;
   };
@@ -83,7 +83,7 @@ export type SalonConfig = {
     intro: string;
     services: string;
     salon: string;
-    extensions: string;
+    cutColor: string;
     booking: string;
     visit: string;
     faq: string;
@@ -113,183 +113,272 @@ export type SalonConfig = {
   };
 };
 
-const templateHairImage = (src: string, caption: string, alt: string): ImageAsset => ({
+const hairImage = (src: string, caption: string, alt: string): ImageAsset => ({
   src,
   caption,
   alt,
 });
 
+const baseUrl = "https://glamour-cut-wilden.vercel.app";
+
 export const salonConfig = {
   preview: {
     enabled: true,
-    label: "Vorab-Entwurf",
-    note: "Neutrale Inhalte für das Erstgespräch – öffentliche Fakten und persönliche Wünsche werden vor dem Livegang finalisiert.",
+    label: "Kundenvorschau",
+    note: "Öffentliche Angaben wurden recherchiert; Leistungen und Rechtstexte werden vor dem Livegang gemeinsam final geprüft.",
   },
   identity: {
-    name: "Ihr Friseursalon",
-    descriptor: "Friseursalon · Haar · Stil · Beratung",
-    owner: "",
-    address: ["Adresse des Salons", "Ort des Salons"],
-    phoneDisplay: "",
-    phoneHref: "",
-    email: "",
-    emailHref: "",
+    name: "Glamour Cut",
+    descriptor: "Friseursalon · Wilnsdorf-Wilden",
+    owner: "Elena Schefer",
+    address: ["Auf dem Bruch 1", "57234 Wilnsdorf-Wilden"],
+    phoneDisplay: "02739 / 875447",
+    phoneHref: "tel:+492739875447",
+    email: "e.schefer33@gmail.com",
+    emailHref: "mailto:e.schefer33@gmail.com",
     year: "2026",
     locale: "de-DE",
   },
   logo: {
-    text: "Salon",
-    mark: "SF",
-    subtitle: "Haar · Stil · Beratung",
-    src: "/images/brand-mark.svg",
-    alt: "Neutrales Salonlogo",
+    text: "Glamour Cut",
+    mark: "GC",
+    subtitle: "by Elena Schefer",
+    src: "/favicon.svg",
+    alt: "Glamour Cut Schriftzug",
   },
   accent: {
-    base: "#70465e",
-    dark: "#4d3041",
-    soft: "#a47a8e",
-    light: "#f0dfe7",
+    base: "#70344C",
+    dark: "#4D2336",
+    soft: "#A8788B",
+    light: "#EEDFE5",
   },
   navigation: [
     { label: "Start", href: "/" },
     { label: "Team", href: "/team/" },
     { label: "Salon", href: "/salon/" },
-    { label: "Extensions", href: "/haarverlaengerung-extension/" },
+    { label: "Schnitt & Farbe", href: "/schnitt-farbe/" },
     { label: "Über Uns", href: "/ueber-uns/" },
     { label: "Öffnungszeiten/Kontakt", href: "/oeffnungszeiten/" },
   ],
   links: {
     bookingUrl: "",
-    websiteUrl: "",
-    directionsUrl: "",
-    mapEmbedUrl: "",
-    social: [] as Array<{ label: string; href: string }>,
+    websiteUrl: baseUrl,
+    directionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Glamour+Cut%2C+Auf+dem+Bruch+1%2C+57234+Wilnsdorf-Wilden",
+    mapEmbedUrl: "https://www.google.com/maps?q=Glamour+Cut%2C+Auf+dem+Bruch+1%2C+57234+Wilnsdorf-Wilden&output=embed",
+    social: [
+      { label: "Instagram", href: "https://www.instagram.com/glamour.cut/" },
+    ],
   },
   map: {
     mode: "consent",
     providerName: "Google Maps",
-    title: "Anfahrt zum Salon",
-    consentLabel: "Karte laden",
-    consentCopy: "Beim Laden der Karte können Daten an Google übertragen werden.",
+    title: "Anfahrt zu Glamour Cut in Wilnsdorf-Wilden",
+    consentLabel: "Google Maps laden",
+    consentCopy: "Erst nach Ihrem Klick wird die Karte von Google Maps geladen. Dabei können Daten an Google übertragen werden.",
     routeLabel: "Route in Google Maps öffnen",
   },
   hours: [
-    { label: "Montag", time: "Nach Recherche bestätigen" },
-    { label: "Dienstag", time: "Nach Recherche bestätigen" },
-    { label: "Mittwoch", time: "Nach Recherche bestätigen" },
-    { label: "Donnerstag", time: "Nach Recherche bestätigen" },
-    { label: "Freitag", time: "Nach Recherche bestätigen" },
-    { label: "Samstag", time: "Nach Recherche bestätigen" },
+    { label: "Montag", time: "Geschlossen" },
+    { label: "Dienstag", time: "09:00–18:00" },
+    { label: "Mittwoch", time: "09:00–17:00" },
+    { label: "Donnerstag", time: "09:00–18:00" },
+    { label: "Freitag", time: "09:00–19:00" },
+    { label: "Samstag", time: "08:00–13:00" },
+    { label: "Sonntag", time: "Geschlossen" },
   ],
-  hoursNote: "Aktuelle Öffnungszeiten werden vor dem Livegang anhand öffentlicher Angaben abgeglichen.",
+  hoursNote: "Stand: Google-Unternehmensprofil, geprüft am 22.08.2026. An Feiertagen bitte kurz telefonisch nachfragen.",
   services: [
-    { number: "01", title: "Beratung & Schnitt", copy: "Ein klarer Plan für einen Look, der zu Haarstruktur, Alltag und persönlichem Stil passt." },
-    { number: "02", title: "Styling & Finish", copy: "Textur, Form und ein Finish, das den neuen Look im Alltag leicht tragbar macht." },
-    { number: "03", title: "Farbe & Nuancen", copy: "Farbideen mit Gefühl für Ton, Tiefe und den Charakter des jeweiligen Haars." },
-    { number: "04", title: "Highlights & Dimension", copy: "Lichtreflexe und weiche Übergänge für mehr Bewegung und eine natürliche Wirkung." },
-    { number: "05", title: "Pflege & Glanz", copy: "Routinen und Produkte, die das Haar zwischen den Terminen gepflegt und lebendig halten." },
-    { number: "06", title: "Länge & Extensions", copy: "Mehr Fülle oder Länge beginnt mit einer persönlichen Beratung und einer passenden Methode." },
-    { number: "07", title: "Looks für besondere Momente", copy: "Ein Styling, das sich für Feier, Event oder einfach für den nächsten schönen Tag richtig anfühlt." },
-    { number: "08", title: "Ihr persönlicher Plan", copy: "Gemeinsam entsteht eine realistische Empfehlung für den nächsten Termin und die Zeit dazwischen." },
+    {
+      number: "01",
+      title: "Persönliche Beratung",
+      copy: "Wünsche, Haar und Alltag geben gemeinsam die Richtung für den nächsten Look vor.",
+    },
+    {
+      number: "02",
+      title: "Schnitt & Form",
+      copy: "Ein frischer Schnitt bringt Form, Bewegung und eine Linie, die im Alltag zu Ihnen passt.",
+    },
+    {
+      number: "03",
+      title: "Farbe & Veränderung",
+      copy: "Farbideen und sichtbare Veränderungen werden persönlich besprochen und passend zum Haar geplant.",
+    },
+    {
+      number: "04",
+      title: "Kurzhaarfrisuren",
+      copy: "Klare Konturen und eine Form, die den eigenen Stil präzise auf den Punkt bringt.",
+    },
+    {
+      number: "05",
+      title: "Flechtfrisuren",
+      copy: "Geflochtene Looks als ausdrucksstarke Inspiration für besondere Momente.",
+    },
   ],
   team: [
     {
-      name: "Persönliche Beratung",
-      role: "Für Ihren Stil",
-      bio: "Von der ersten Idee bis zum Finish steht ein klarer, persönlicher Austausch im Mittelpunkt.",
-    },
-    {
-      name: "Handwerk mit Sorgfalt",
-      role: "Für Ihr gutes Gefühl",
-      bio: "Jeder Termin bekommt Zeit für Verständnis, Auswahl und einen Look, der sich nach Ihnen anfühlt.",
+      name: "Elena Schefer",
+      role: "Glamour Cut · persönliche Ansprechpartnerin",
+      bio: "Bei Glamour Cut steht der persönliche Austausch im Mittelpunkt – von der ersten Idee bis zum passenden nächsten Schritt.",
     },
   ],
   media: {
-    hero: templateHairImage(
+    hero: hairImage(
       "/images/hero-hair-photo.webp",
-      "Original KI-Haarmotiv · keine Salonaufnahme",
-      "Original KI-Haarmotiv mit langen braunen Wellen von hinten; keine Salonaufnahme",
+      "Haar-Inspiration",
+      "Symbolbild mit langen braunen Wellen als Haar-Inspiration",
     ),
-    salon: templateHairImage(
+    salon: hairImage(
       "/images/salon-hair-photo.webp",
-      "Original KI-Haarmotiv · vor Kundeneinsatz ersetzen oder freigeben",
-      "Original KI-Haarmotiv mit blondem, strukturiertem Bob von hinten; keine Salonaufnahme",
+      "Schnitt & Form",
+      "Symbolbild eines strukturierten Bobs als Inspiration für Schnitt und Form",
     ),
-    extension: templateHairImage(
+    color: hairImage(
       "/images/extensions-hair-photo.webp",
-      "Original KI-Haarmotiv für Extensions · keine Leistungsaufnahme",
-      "Original KI-Haarmotiv mit langen dunkelbraunen Haarsträhnen; keine Leistungsaufnahme",
+      "Farbe & Veränderung",
+      "Symbolbild mit langem dunklem Haar als Inspiration für Farbe und Veränderung",
     ),
-    team: templateHairImage(
+    team: hairImage(
       "/images/team-hair-photo.webp",
-      "Original KI-Haarmotiv · keine Teamdarstellung",
-      "Original KI-Haarmotiv mit kupferfarbenen Wellen von hinten; keine Teamdarstellung",
+      "Persönliche Beratung",
+      "Symbolbild mit kupferfarbenen Wellen als Haar-Inspiration",
     ),
-    about: templateHairImage(
+    about: hairImage(
       "/images/about-hair-photo.webp",
-      "Original KI-Haarmotiv · keine Salonaufnahme",
-      "Original KI-Haarmotiv mit dunklen lockigen Haaren von hinten; keine Salonaufnahme",
+      "Glamour Cut in Wilden",
+      "Symbolbild mit dunklen Locken als Haar-Inspiration für Glamour Cut",
     ),
   },
   history: {
     heading: "Ihr Stil beginnt mit guter Beratung.",
-    intro: "Ein guter Salon verbindet Handwerk, Persönlichkeit und Zeit für das, was Ihnen wichtig ist.",
+    intro: "Persönlicher Austausch, neue Ideen und ein Look, der sich nach Ihnen anfühlt.",
     paragraphs: [
-      "Jeder Salon ist anders – und jeder Look beginnt mit einem guten Gespräch.",
-      "Von Schnitt und Styling bis Farbe, Pflege oder Länge entsteht die Auswahl passend zu Haar, Alltag und Wunsch.",
-      "Die Geschichte, Menschen und besonderen Schwerpunkte dieses Salons werden im Erstgespräch mit den passenden Fakten ergänzt.",
+      "Bei Glamour Cut beginnt Veränderung mit einem persönlichen Gespräch. Wünsche, Haar und Alltag geben die Richtung vor.",
+      "Öffentliche Einblicke zeigen Schnitt, Farbe, Kurzhaar- und Flechtfrisuren – als Inspiration für den eigenen Termin.",
+      "Den passenden Termin stimmen Sie direkt telefonisch mit dem Salon ab.",
     ],
   },
   claims: {
-    hero: "Haar. Stil. Persönlichkeit.",
+    hero: "Lust auf Veränderung?",
     intro: "Ihr Look. Ihr Moment.",
-    services: "Alles für Ihren Look.",
-    salon: "Raum für gute Beratung.",
-    extensions: "Mehr Länge. Mehr Möglichkeiten.",
-    booking: "Ihr Termin. Ihr Rhythmus.",
-    visit: "Wir freuen uns auf Ihren Besuch.",
-    faq: "Gut zu wissen.",
+    services: "Schnitt. Farbe. Neue Ideen.",
+    salon: "Raum für Ihren Stil.",
+    cutColor: "Schnitt, Farbe und neue Ideen.",
+    booking: "Direkt zum persönlichen Termin.",
+    visit: "In Wilden. Schnell gefunden.",
+    faq: "Die wichtigsten Fragen vor Ihrem Termin.",
     final: "Bereit für Ihren nächsten Look?",
   },
   faq: [
-    { question: "Wie wird ein Termin vereinbart?", answer: "Nutzen Sie den bestätigten Online-Terminlink oder fragen Sie direkt beim Salon an. Der passende Weg wird im finalen Kundenprofil hinterlegt." },
-    { question: "Welche Leistungen werden angeboten?", answer: "Das Leistungsprofil wird anhand öffentlicher Saloninformationen aufgebaut und im Gespräch gemeinsam verfeinert." },
-    { question: "Wo befindet sich der Salon?", answer: "Adresse und Route werden nach der öffentlichen Recherche übersichtlich auf der Kontaktseite gezeigt." },
-    { question: "Wann ist der Salon geöffnet?", answer: "Die aktuell recherchierten Öffnungszeiten werden vor dem Livegang gegengeprüft und zentral gepflegt." },
-    { question: "Wo finde ich weitere Informationen?", answer: "Offizielle Website und Social-Profile werden nur verlinkt, wenn sie eindeutig dem Salon zugeordnet sind." },
+    {
+      question: "Wie vereinbare ich einen Termin?",
+      answer: "Termine werden direkt telefonisch unter 02739 / 875447 abgestimmt. Eine bestätigte Online-Buchung ist derzeit nicht öffentlich verlinkt.",
+    },
+    {
+      question: "Welche Bereiche zeigt Glamour Cut öffentlich?",
+      answer: "Öffentliche Einblicke zeigen Beratung, Schnitt, Farbe, Kurzhaar- und Flechtfrisuren. Den konkreten Wunsch und Umfang klären Sie bitte direkt im Salon.",
+    },
+    {
+      question: "Wo befindet sich der Salon?",
+      answer: "Glamour Cut liegt Auf dem Bruch 1 in 57234 Wilnsdorf-Wilden. Die Route lässt sich über Google Maps öffnen.",
+    },
+    {
+      question: "Wann ist Glamour Cut geöffnet?",
+      answer: "Die aktuell recherchierten Zeiten stehen auf der Kontaktseite. An Feiertagen empfiehlt sich eine kurze telefonische Rückfrage.",
+    },
+    {
+      question: "Wo finde ich aktuelle Haar-Inspirationen?",
+      answer: "Das bestätigte Instagram-Profil @glamour.cut zeigt öffentliche Einblicke und aktuelle Inspirationen.",
+    },
   ],
   seo: {
-    baseUrl: "",
+    baseUrl,
     pages: {
-      home: { title: "Friseursalon | Haar, Stil & Beratung", description: "Vorab-Entwurf für einen modernen Friseursalon mit persönlicher Beratung und klarer Bildsprache.", canonical: "" },
-      team: { title: "Team & Haltung | Friseursalon", description: "Persönliche Beratung, sorgfältiges Handwerk und ein gutes Gefühl für den eigenen Stil.", canonical: "" },
-      salon: { title: "Der Salon | Friseursalon", description: "Ein ruhiger Ort für Beratung, Schnitt, Styling und neue Ideen.", canonical: "" },
-      extensions: { title: "Extensions & Länge | Friseursalon", description: "Mehr Länge und Fülle beginnen mit einer persönlichen Beratung.", canonical: "" },
-      about: { title: "Über Uns | Friseursalon", description: "Die Geschichte, Haltung und Arbeitsweise des Salons im Überblick.", canonical: "" },
-      contact: { title: "Öffnungszeiten & Kontakt | Friseursalon", description: "Kontakt, Öffnungszeiten und Anfahrt übersichtlich an einem Ort.", canonical: "" },
-      booking: { title: "Termin anfragen | Friseursalon", description: "Den passenden Terminweg finden und den eigenen Wunsch besprechen.", canonical: "" },
-      imprint: { title: "Impressum | Friseursalon", description: "Rechtliche Betreiberangaben des Friseursalons.", canonical: "" },
-      privacy: { title: "Datenschutz | Friseursalon", description: "Datenschutzhinweise des Friseursalons.", canonical: "" },
+      home: {
+        title: "Glamour Cut | Friseursalon in Wilnsdorf-Wilden",
+        description: "Glamour Cut in Wilnsdorf-Wilden: persönliche Beratung, Schnitt, Farbe und neue Haar-Ideen. Termin direkt telefonisch anfragen.",
+        canonical: `${baseUrl}/`,
+      },
+      team: {
+        title: "Elena Schefer | Glamour Cut Wilden",
+        description: "Lernen Sie Elena Schefer und die persönliche Beratung bei Glamour Cut in Wilnsdorf-Wilden kennen.",
+        canonical: `${baseUrl}/team/`,
+      },
+      salon: {
+        title: "Der Salon | Glamour Cut Wilden",
+        description: "Glamour Cut in Wilden: Raum für persönliche Beratung, Schnitt, Farbe und neue Ideen.",
+        canonical: `${baseUrl}/salon/`,
+      },
+      cutColor: {
+        title: "Schnitt & Farbe | Glamour Cut Wilden",
+        description: "Schnitt, Farbe, Kurzhaar- und Flecht-Inspirationen bei Glamour Cut in Wilnsdorf-Wilden.",
+        canonical: `${baseUrl}/schnitt-farbe/`,
+      },
+      about: {
+        title: "Über Glamour Cut | Friseursalon in Wilden",
+        description: "Persönlicher Austausch und Haar-Inspirationen bei Glamour Cut von Elena Schefer in Wilnsdorf-Wilden.",
+        canonical: `${baseUrl}/ueber-uns/`,
+      },
+      contact: {
+        title: "Öffnungszeiten & Kontakt | Glamour Cut Wilden",
+        description: "Telefon, Adresse, Öffnungszeiten und Anfahrt zu Glamour Cut, Auf dem Bruch 1 in Wilnsdorf-Wilden.",
+        canonical: `${baseUrl}/oeffnungszeiten/`,
+      },
+      booking: {
+        title: "Termin anfragen | Glamour Cut Wilden",
+        description: "Termin bei Glamour Cut in Wilnsdorf-Wilden direkt telefonisch unter 02739 / 875447 anfragen.",
+        canonical: `${baseUrl}/termin-buchen/`,
+      },
+      imprint: {
+        title: "Impressum | Glamour Cut Wilden",
+        description: "Anbieterangaben der Kundenvorschau von Glamour Cut in Wilnsdorf-Wilden.",
+        canonical: `${baseUrl}/impressum/`,
+      },
+      privacy: {
+        title: "Datenschutz | Glamour Cut Wilden",
+        description: "Datenschutzhinweise zur Kundenvorschau von Glamour Cut in Wilnsdorf-Wilden.",
+        canonical: `${baseUrl}/datenschutz/`,
+      },
     },
   },
   legal: {
     imprint: {
-      owner: "Die rechtlichen Betreiberangaben werden vor dem Livegang ergänzt.",
-      address: ["Adresse des Salons wird vor dem Livegang ergänzt."],
-      contact: "Telefonischer und digitaler Kontakt werden im finalen Profil ergänzt.",
+      owner: "Elena Schefer",
+      address: ["Auf dem Bruch 1", "57234 Wilnsdorf-Wilden"],
+      contact: "Telefon: 02739 / 875447 · E-Mail: e.schefer33@gmail.com",
       paragraphs: [
-        { title: "Betreiberangaben", copy: "Name, ladungsfähige Anschrift und Kontakt werden nach der Recherche mit dem Salon geprüft." },
-        { title: "Externe Links", copy: "Verlinkt werden nur bestätigte Seiten und Dienste. Die finale rechtliche Bewertung erfolgt vor der Veröffentlichung." },
-        { title: "Urheberrecht", copy: "Texte, Bilder und Gestaltung werden mit Quelle, Lizenz und Freigabestatus dokumentiert." },
+        {
+          title: "Hinweis zur Kundenvorschau",
+          copy: "Die öffentlich recherchierten Kontaktangaben sind eingetragen. Rechtsform, vollständige Anbieterkennzeichnung und weitere Pflichtangaben müssen vor einem regulären Livegang durch die Betreiberin bestätigt und rechtlich geprüft werden.",
+        },
+        {
+          title: "Externe Links",
+          copy: "Diese Vorschau verlinkt das bestätigte Instagram-Profil und Google Maps. Für Inhalte externer Seiten sind deren jeweilige Anbieter verantwortlich.",
+        },
+        {
+          title: "Bildmaterial",
+          copy: "Die verwendeten Haarmotive sind generische Symbolbilder der Website-Vorlage und keine Aufnahmen des Salons, des Teams oder von Kundinnen und Kunden.",
+        },
       ],
     },
     privacy: {
-      responsible: "Verantwortliche Stelle und Kontaktdaten werden vor dem Livegang ergänzt.",
+      responsible: "Elena Schefer",
       paragraphs: [
-        { title: "Verantwortliche Stelle", copy: "Die für den Salon verantwortliche Stelle wird mit den finalen Betreiberangaben ergänzt." },
-        { title: "Externe Links und Buchung", copy: "Nur tatsächlich eingesetzte externe Dienste und ihre Datenschutzhinweise werden beschrieben." },
-        { title: "Kartenansicht", copy: "Die Kartenansicht wird erst nach einer bewussten Zustimmung geladen. Anbieter, Zweck und Rechtsgrundlage werden vor dem Livegang geprüft." },
-        { title: "Kontakt", copy: "Kontaktwege und Speicherfristen werden ausschließlich anhand der tatsächlich eingesetzten Funktionen dokumentiert." },
+        {
+          title: "Kundenvorschau und Hosting",
+          copy: "Diese Website ist eine technische Kundenvorschau. Angaben zu Hosting, Server-Protokollen, Speicherdauer und Rechtsgrundlagen müssen vor dem regulären Livegang anhand der finalen Konfiguration rechtlich geprüft und ergänzt werden.",
+        },
+        {
+          title: "Kontakt",
+          copy: "Die Website enthält kein Kontaktformular und speichert selbst keine Terminangaben. Bei Telefon- oder E-Mail-Kontakt gelten die dort vereinbarten Kommunikationswege.",
+        },
+        {
+          title: "Google Maps",
+          copy: "Die eingebettete Karte wird erst nach einem bewussten Klick geladen. Erst dann kann eine Verbindung zu Google aufgebaut und können Daten an Google übertragen werden. Alternativ lässt sich der externe Routenlink direkt öffnen.",
+        },
+        {
+          title: "Instagram",
+          copy: "Instagram-Inhalte werden nicht eingebettet. Erst beim Öffnen des externen Links verlassen Sie diese Website; dort gelten die Datenschutzbestimmungen von Instagram.",
+        },
       ],
     },
     approvals: {

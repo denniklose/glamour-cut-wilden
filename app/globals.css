@@ -4,21 +4,21 @@
   --canvas: #f8f7f5;
   --surface: #ffffff;
   --surface-muted: #f1efeb;
-  --surface-accent: #f2eaf0;
+  --surface-accent: #f4eaf0;
   --ink: #171514;
   --ink-soft: #625d59;
   --ink-faint: #8d8781;
-  --accent: #70465e;
-  --accent-dark: #4d3041;
-  --accent-soft: #a47a8e;
-  --accent-light: #f0dfe7;
+  --accent: #70344c;
+  --accent-dark: #4d2336;
+  --accent-soft: #a8788b;
+  --accent-light: #eedfe5;
   --line: #e5e1dd;
-  --line-accent: #ddc8cf;
+  --line-accent: #dec4ce;
   --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --script: "URW Chancery L", "Snell Roundhand", "Brush Script MT", cursive;
   --shadow-soft: 0 18px 54px rgba(43, 29, 34, 0.08);
-  --shadow-button: 0 10px 23px rgba(112, 70, 94, 0.2);
+  --shadow-button: 0 10px 23px rgba(112, 52, 76, 0.2);
 }
 
 * {
@@ -66,7 +66,7 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid rgba(112, 70, 94, 0.5);
+  outline: 3px solid rgba(112, 52, 76, 0.5);
   outline-offset: 4px;
 }
 
@@ -175,7 +175,7 @@ a {
   border: 1px solid var(--accent);
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 7px 15px rgba(112, 70, 94, 0.16);
+  box-shadow: 0 7px 15px rgba(112, 52, 76, 0.16);
   color: #fff;
   font-size: 12px;
   font-weight: 750;
@@ -184,7 +184,7 @@ a {
 
 .header-booking:hover {
   background: var(--accent-dark);
-  box-shadow: 0 10px 22px rgba(77, 48, 65, 0.21);
+  box-shadow: 0 10px 22px rgba(77, 35, 54, 0.21);
   transform: translateY(-1px);
 }
 
@@ -356,7 +356,7 @@ a {
 
 .button-primary:hover {
   background: var(--accent-dark);
-  box-shadow: 0 13px 27px rgba(77, 48, 65, 0.24);
+  box-shadow: 0 13px 27px rgba(77, 35, 54, 0.24);
   transform: translateY(-2px);
 }
 
@@ -1093,7 +1093,7 @@ a {
 .visit-copy .section-kicker,
 .final-cta .section-kicker,
 .inner-note-section-dark .section-kicker {
-  color: #e8c8d3;
+  color: #e6c6d2;
 }
 
 .visit-copy h2,
@@ -1141,7 +1141,7 @@ a {
 }
 
 .map-consent-card .section-kicker {
-  color: #e8c8d3;
+  color: #e6c6d2;
 }
 
 .map-pin {
@@ -1222,7 +1222,7 @@ a {
 }
 
 .hours-title small {
-  color: #e8c8d3;
+  color: #e6c6d2;
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.12em;
@@ -1253,7 +1253,7 @@ a {
 }
 
 .hours-panel dt {
-  color: #e8c8d3;
+  color: #e6c6d2;
   font-weight: 700;
 }
 
@@ -1366,7 +1366,7 @@ a {
   position: relative;
   padding: 104px max(5vw, calc((100vw - 1280px) / 2));
   background-color: var(--accent);
-  background-image: linear-gradient(rgba(77, 48, 65, 0.2), rgba(77, 48, 65, 0.38));
+  background-image: linear-gradient(rgba(77, 35, 54, 0.2), rgba(77, 35, 54, 0.38));
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -1389,7 +1389,7 @@ a {
   grid-template-columns: 1.12fr 0.92fr 0.74fr;
   gap: 48px;
   padding: 67px max(5vw, calc((100vw - 1280px) / 2));
-  background: #432d39;
+  background: #3e1c2b;
   color: #fff;
 }
 
@@ -1398,7 +1398,7 @@ a {
 }
 
 .site-footer .wordmark small {
-  color: #e1c1ce;
+  color: #dfbdca;
 }
 
 .preview-note {
@@ -1412,7 +1412,7 @@ a {
 }
 
 .preview-note strong {
-  color: #f0dfe7;
+  color: var(--accent-light);
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1444,7 +1444,7 @@ a {
 
 .footer-legal span {
   margin-bottom: 4px;
-  color: #e1c1ce;
+  color: #dfbdca;
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.14em;
@@ -1580,7 +1580,7 @@ a {
   position: relative;
   border-color: transparent;
   background-color: var(--accent);
-  background-image: linear-gradient(rgba(77, 48, 65, 0.2), rgba(77, 48, 65, 0.38));
+  background-image: linear-gradient(rgba(77, 35, 54, 0.2), rgba(77, 35, 54, 0.38));
   background-position: center;
   background-size: cover;
   color: #fff;
@@ -1676,7 +1676,7 @@ a {
 
 .contact-page-card-dark .section-kicker,
 .booking-details-card-dark .section-kicker {
-  color: #e8c8d3;
+  color: #e6c6d2;
 }
 
 .contact-page-card-dark h2,
@@ -1716,7 +1716,7 @@ a {
 
 .contact-page-card-dark .contact-hours dt,
 .booking-details-card-dark .contact-hours dt {
-  color: #e8c8d3;
+  color: #e6c6d2;
 }
 
 .contact-page-card-dark .contact-hours dd,
@@ -1936,6 +1936,14 @@ a {
     min-height: auto;
   }
 
+  .hero-copy {
+    min-width: 0;
+  }
+
+  .hero h1 .heading-accent {
+    font-size: min(1.05em, 5.6vw);
+  }
+
   .hero-arch,
   .hero-visual {
     min-height: 490px;
@@ -2084,7 +2092,7 @@ a {
   }
 
   .hero {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 38px;
     padding: 54px 20px 63px;
     background-image: linear-gradient(rgba(248, 247, 245, 0.55), rgba(248, 247, 245, 0.78));
@@ -2103,6 +2111,16 @@ a {
     line-height: 0.94;
   }
 
+  .hero h1 {
+    font-size: clamp(45px, 12vw, 52px);
+  }
+
+  .hero h1 .heading-accent {
+    max-width: 100%;
+    font-size: min(0.95em, 11vw);
+    letter-spacing: -0.065em;
+  }
+
   .hero-intro {
     font-size: 16px;
   }
@@ -2113,7 +2131,8 @@ a {
 
   .hero-actions .button,
   .hero-actions .text-link {
-    flex: 1 0 auto;
+    width: 100%;
+    flex: 1 1 100%;
   }
 
   .button {
@@ -2362,7 +2381,7 @@ a {
     padding: 0 18px;
     border-radius: 999px;
     background: var(--accent);
-    box-shadow: 0 12px 30px rgba(77, 48, 65, 0.28);
+    box-shadow: 0 12px 30px rgba(77, 35, 54, 0.28);
     color: #fff;
     font-size: 13px;
     font-weight: 800;

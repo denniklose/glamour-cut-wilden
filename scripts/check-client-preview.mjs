@@ -8,7 +8,7 @@ const requiredRoutes = [
   "app/page.tsx",
   "app/team/page.tsx",
   "app/salon/page.tsx",
-  "app/haarverlaengerung-extension/page.tsx",
+  "app/schnitt-farbe/page.tsx",
   "app/ueber-uns/page.tsx",
   "app/termin-buchen/page.tsx",
   "app/oeffnungszeiten/page.tsx",

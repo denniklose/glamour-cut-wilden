@@ -12,7 +12,7 @@ export default function SiteHeader({ inner = false }: SiteHeaderProps) {
       </Link>
       <nav className="desktop-nav" aria-label="Seitennavigation">{navigation.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}</nav>
       <div className="header-contact">
-        {site.phoneHref ? <a className="header-phone" href={site.phoneHref}><span aria-hidden="true">☎</span>{site.phoneDisplay}</a> : <span className="header-phone">{site.phoneDisplay || "Kontakt folgt"}</span>}
+        <a className="header-phone" href={site.phoneHref}><span aria-hidden="true">☎</span>{site.phoneDisplay}</a>
         <span className="header-location">{site.address[1]}</span>
         <Link className="header-booking" href={bookingHref}>{bookingLabel}</Link>
       </div>
