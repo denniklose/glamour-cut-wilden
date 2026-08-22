@@ -41,7 +41,7 @@ export default function Home() {
         <div className="hero-visual" aria-label="Haar-Inspiration"><div className="hero-arch"><Image src={salonConfig.media.hero.src} alt={salonConfig.media.hero.alt} fill priority sizes="(max-width: 760px) 94vw, 44vw" /></div><span className="image-note">{salonConfig.media.hero.caption}</span><span className="hero-visual-line" aria-hidden="true" /></div>
       </section>
 
-      <section className="service-intro" aria-labelledby="service-intro-title"><p>Beratung · Schnitt · Farbe</p><div className="service-intro-composition"><h2 id="service-intro-title"><span>{introClaim.lead}</span><em className="heading-accent">{introClaim.accent}</em></h2><Link href={bookingHref}>{bookingLabel} <span aria-hidden="true">→</span></Link></div></section>
+      <section className="service-intro" aria-labelledby="service-intro-title"><div className="service-intro-composition"><p className="section-kicker">Beratung · Schnitt · Farbe</p><h2 id="service-intro-title"><span>{introClaim.lead}</span><em className="heading-accent">{introClaim.accent}</em></h2><Link href={bookingHref}>{bookingLabel} <span aria-hidden="true">→</span></Link></div></section>
 
       <section className="services-section" id="leistungen" aria-labelledby="services-title"><div className="section-heading section-heading-light services-heading"><p className="section-kicker">Inspiration &amp; Bereiche</p><h2 id="services-title" className="editorial-heading"><span>Schnitt. Farbe.</span><em className="heading-accent">Neue Ideen.</em></h2><p>{pageCopy.home.serviceIntro}</p></div><ServiceSelector services={salonConfig.services} bookingHref={bookingHref} bookingLabel={bookingLabel} /></section>
 
