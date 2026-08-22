@@ -525,21 +525,33 @@ a {
   margin-bottom: 18px;
 }
 
-.service-intro-composition h2 {
-  display: grid;
-  justify-items: start;
+.service-intro-title {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.18em;
   row-gap: 0.02em;
 }
 
-.service-intro-composition h2 > span {
+.service-intro-title > span {
   display: block;
+  flex: none;
 }
 
 .service-intro-composition .heading-accent {
+  flex: none;
   font-size: 1.3em;
   line-height: 0.82;
   padding-bottom: 0.19em;
   vertical-align: 0;
+}
+
+@media (min-width: 1024px) {
+  .service-intro .service-intro-title {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
 }
 
 .service-intro h2,
