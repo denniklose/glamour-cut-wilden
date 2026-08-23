@@ -2259,6 +2259,10 @@ a {
   display: block;
 }
 
+.booking-page-intro > .booking-overview {
+  margin-top: 42px;
+}
+
 .booking-page-intro > p:not(.section-kicker) {
   margin-right: auto;
   margin-left: auto;
