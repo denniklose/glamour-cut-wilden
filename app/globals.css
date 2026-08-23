@@ -566,6 +566,7 @@ a {
 .about-copy h2,
 .booking-page-intro h2,
 .contact-map-copy h2,
+.booking-map-section > div:first-child h2,
 .contact-page-card h2,
 .booking-details-card h2,
 .legal-page-content h2 {
@@ -1116,7 +1117,8 @@ a {
 .inner-feature-copy h2,
 .inner-note-section h2,
 .booking-page-intro h2,
-.contact-map-copy h2 {
+.contact-map-copy h2,
+.booking-map-section > div:first-child h2 {
   margin-top: 17px;
 }
 
@@ -1824,6 +1826,9 @@ a {
 
 .inner-hero-copy .button {
   width: fit-content;
+}
+
+.inner-hero-copy > .button {
   margin-top: 29px;
 }
 
@@ -2178,7 +2183,8 @@ a {
   min-height: 520px;
 }
 
-.contact-map-section .map-consent-card {
+.contact-map-section .map-consent-card,
+.booking-map-section .map-consent-card {
   justify-content: center;
   gap: 28px;
   padding: clamp(40px, 5vw, 68px);
@@ -2186,45 +2192,53 @@ a {
   color: var(--ink);
 }
 
-.contact-map-section .map-pin {
+.contact-map-section .map-pin,
+.booking-map-section .map-pin {
   border-color: var(--line-accent);
   background: var(--surface-accent);
   color: var(--accent);
 }
 
-.contact-map-section .map-consent-card .section-kicker {
+.contact-map-section .map-consent-card .section-kicker,
+.booking-map-section .map-consent-card .section-kicker {
   color: var(--accent);
 }
 
-.contact-map-section .map-consent-card strong {
+.contact-map-section .map-consent-card strong,
+.booking-map-section .map-consent-card strong {
   max-width: 470px;
   color: var(--ink);
   font-size: clamp(28px, 3vw, 40px);
   line-height: 1.02;
 }
 
-.contact-map-section .map-consent-address {
+.contact-map-section .map-consent-address,
+.booking-map-section .map-consent-address {
   color: var(--ink);
 }
 
-.contact-map-section .map-consent-content > p:last-child {
+.contact-map-section .map-consent-content > p:last-child,
+.booking-map-section .map-consent-content > p:last-child {
   max-width: 520px;
   color: var(--ink-soft);
 }
 
-.contact-map-section .button-light {
+.contact-map-section .button-light,
+.booking-map-section .button-light {
   border-color: var(--accent);
   background: var(--accent);
   box-shadow: var(--shadow-button);
   color: #fff;
 }
 
-.contact-map-section .button-light:hover {
+.contact-map-section .button-light:hover,
+.booking-map-section .button-light:hover {
   border-color: var(--accent-dark);
   background: var(--accent-dark);
 }
 
-.contact-map-section .map-route-link {
+.contact-map-section .map-route-link,
+.booking-map-section .map-route-link {
   color: var(--accent);
 }
 
@@ -2234,9 +2248,10 @@ a {
 }
 
 .booking-page-intro {
-  max-width: 900px;
+  width: min(calc(100% - var(--page-gutters)), 900px);
+  max-width: none;
   margin: 0 auto;
-  padding: 101px max(5vw, calc((100vw - 900px) / 2)) 16px;
+  padding: 101px 0 16px;
   text-align: center;
 }
 
@@ -2277,6 +2292,17 @@ a {
 
 .booking-map-section {
   margin-top: 20px;
+}
+
+.booking-map-section > div:first-child,
+.booking-map-section .map-consent-card,
+.booking-map-section .map-embed {
+  min-height: 420px;
+}
+
+.booking-map-section .map-consent-card {
+  gap: 22px;
+  padding: clamp(32px, 4vw, 50px);
 }
 
 .booking-map-section > div:first-child > p:last-child {
@@ -2637,6 +2663,7 @@ a {
   .inner-note-section h2,
   .booking-page-intro h2,
   .contact-map-copy h2,
+  .booking-map-section > div:first-child h2,
   .contact-page-card h2,
   .booking-details-card h2 {
     font-size: clamp(34px, 10vw, 46px);
@@ -2988,12 +3015,17 @@ a {
   }
 
   .contact-map-section .map-consent-card,
-  .booking-map-section .map-consent-card,
   .contact-map-section .map-embed {
     min-height: 530px;
   }
 
+  .booking-map-section .map-consent-card,
+  .booking-map-section .map-embed {
+    min-height: 430px;
+  }
+
   .booking-page-intro {
+    width: auto;
     padding: 73px 20px 8px;
     text-align: left;
   }
