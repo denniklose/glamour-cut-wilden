@@ -2281,6 +2281,10 @@ a {
   padding-top: 0;
 }
 
+.booking-details-grid .hours-title span {
+  color: #fff;
+}
+
 .booking-details-card {
   min-height: 350px;
 }
